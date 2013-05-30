@@ -1,0 +1,48 @@
+<?php
+
+a_count  = 5 -- Gendou's Cruisers
+a_armor  = 2700 + 1350
+a_shield =   50 +   30
+a_attack =  400 +  200
+a_cargo  =  800
+a_fuel   =  300
+
+d_count  = 25 -- Pirate's Heavy Fighter
+d_armor  = 1000
+d_shield = 25
+d_attack = 150
+
+fuel = a_count * a_fuel / 1000
+
+loot = a_count * a_cargo / 1000
+
+a_damage = d_count * max({0, d_attack - a_shield})
+a_loss = min({a_count, a_damage / a_armor})
+a_loss_ = a_loss / a_count * 100
+
+d_damage = a_count * max({0, a_attack - d_shield})
+d_loss = min({d_count, d_damage / d_armor})
+d_loss_ = d_loss / d_count * 100
+
+fuel:1.50-- k gas
+
+loot:4.00-- k resources
+
+a_loss:0.43-- count
+a_loss_:8.64-- %
+
+d_loss:2.88-- count
+d_loss_:11.50-- %
+
+
+?>
+<html>
+	<head>
+		<title>Galaxy Empire Battle Calculator</title>
+	</head>
+	<body>
+		<form method="POST">
+			
+		</form>
+	</body>
+</html>

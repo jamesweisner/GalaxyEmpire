@@ -1,0 +1,242 @@
+[
+	{
+		"name": "Light Fighter",
+		"armor": "400",
+		"shield": "10",
+		"attack": "50",
+		"speed": "12500",
+		"cargo": "50",
+		"fuel": "20",
+		"bonus": {
+			"Probe": "5",
+			"Solar Satellite": "5"
+		}
+	},
+	{
+		"name": "Heavy Fighter",
+		"armor": "1000",
+		"shield": "25",
+		"attack": "150",
+		"speed": "10000",
+		"cargo": "100",
+		"fuel": "75",
+		"bonus": {
+			"Probe": "5",
+			"Solar Satellite": "5",
+			"Cargo Ship": "3"
+		}
+	},
+	{
+		"name": "Cruiser",
+		"armor": "2700",
+		"shield": "50",
+		"attack": "400",
+		"speed": "15000",
+		"cargo": "800",
+		"fuel": "300",
+		"bonus": {
+			"Rocket Launcher": "10",
+			"Light Fighter": "6",
+			"Probe": "5",
+			"Solar Satellite": "5"
+		}
+	},
+	{
+		"name": "Battleship",
+		"armor": "6000",
+		"shield": "200",
+		"attack": "1000",
+		"speed": "10000",
+		"cargo": "1500",
+		"fuel": "500",
+		"bonus": {
+			"Probe": "5",
+			"Solar Satellite": "5"
+		}
+	},
+	{
+		"name": "Dreadnoughts",
+		"armor": "700",
+		"shield": "400",
+		"attack": "700",
+		"speed": "10000",
+		"cargo": "750",
+		"fuel": "250",
+		"bonus": {
+			"Battleship": "7",
+			"Probe": "5",
+			"Solar Satellite": "5",
+			"Heavy Fighter": "4",
+			"Cruiser": "4",
+			"Cargo Ship": "3",
+			"L Cargo Ship": "3"
+		}
+	},
+	{
+		"name": "Bomber",
+		"armor": "7500",
+		"shield": "500",
+		"attack": "1000",
+		"speed": "4000",
+		"cargo": "500",
+		"fuel": "1000",
+		"bonus": {
+			"Rocket Launcher": "20",
+			"Light Laser": "20",
+			"Heavy Laser": "10",
+			"Ion Cannon": "10",
+			"Probe": "5",
+			"Solar Satellite": "5"
+		}
+	},
+	{
+		"name": "Destroyer",
+		"armor": "11000",
+		"shield": "500",
+		"attack": "2000",
+		"speed": "5000",
+		"cargo": "2000",
+		"fuel": "1000",
+		"bonus": {
+			"Light Laser": "10",
+			"Probe": "5",
+			"Solar Satellite": "5",
+			"Dreadnoughts": "2"
+		}
+	},
+	{
+		"name": "Interceptor",
+		"armor": "160000",
+		"shield": "1500",
+		"attack": "7000",
+		"speed": "5000",
+		"cargo": "2000",
+		"fuel": "1200"
+	},
+	{
+		"name": "Cargo Ship",
+		"armor": "",
+		"shield": "",
+		"attack": "",
+		"speed": "",
+		"cargo": "",
+		"fuel": ""
+	},
+	{
+		"name": "L Cargo Ship",
+		"armor": "",
+		"shield": "",
+		"attack": "",
+		"speed": "",
+		"cargo": "",
+		"fuel": ""
+	},
+	{
+		"name": "Colony Ship",
+		"armor": "",
+		"shield": "",
+		"attack": "",
+		"speed": "",
+		"cargo": "",
+		"fuel": ""
+	},
+	{
+		"name": "Recycler",
+		"armor": "",
+		"shield": "",
+		"attack": "",
+		"speed": "",
+		"cargo": "",
+		"fuel": ""
+	},
+	{
+		"name": "Probe",
+		"armor": "",
+		"shield": "",
+		"attack": "",
+		"speed": "",
+		"cargo": "",
+		"fuel": ""
+	},
+	{
+		"name": "Solar Satellite",
+		"armor": "",
+		"shield": "",
+		"attack": "",
+		"speed": "",
+		"cargo": "",
+		"fuel": ""
+	},
+	{
+		"name": "Rocket Launcher",
+		"armor": "200",
+		"shield": "20",
+		"attack": "80",
+		"speed": "0",
+		"cargo": "0",
+		"fuel": "0"
+	},
+	{
+		"name": "Light Laser",
+		"armor": "200",
+		"shield": "25",
+		"attack": "100",
+		"speed": "0",
+		"cargo": "0",
+		"fuel": "0"
+	},
+	{
+		"name": "Heavy Laser",
+		"armor": "800",
+		"shield": "100",
+		"attack": "250",
+		"speed": "0",
+		"cargo": "0",
+		"fuel": "0"
+	},
+	{
+		"name": "MK2 Cannon",
+		"armor": "3500",
+		"shield": "200",
+		"attack": "1100",
+		"speed": "0",
+		"cargo": "0",
+		"fuel": "0"
+	},
+	{
+		"name": "Ion Cannon",
+		"armor": "800",
+		"shield": "500",
+		"attack": "150",
+		"speed": "0",
+		"cargo": "0",
+		"fuel": "0"
+	},
+	{
+		"name": "Plasma Cannon",
+		"armor": "10000",
+		"shield": "300",
+		"attack": "3000",
+		"speed": "0",
+		"cargo": "0",
+		"fuel": "0"
+	},
+	{
+		"name": "Small Shield Dome",
+		"armor": "2000",
+		"shield": "2000",
+		"attack": "1",
+		"speed": "0",
+		"cargo": "0",
+		"fuel": "0"
+	},
+	{
+		"name": "Large Shield Dome",
+		"armor": "10000",
+		"shield": "10000",
+		"attack": "1",
+		"speed": "0",
+		"cargo": "0",
+		"fuel": "0"
+	}
+]
