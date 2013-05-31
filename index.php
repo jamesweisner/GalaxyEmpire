@@ -17,7 +17,7 @@ function fuelRatio($tech)
 	L6 162.7 / 300 = 0.542333333
 	L9 159.7 / 300 = 0.532333333
 	*/
-	return 1 - pow($tech, 3);
+	return 1 - pow(0.005 * $tech, 3); // TODO
 }
 
 function battle($attacker, $defender)
@@ -33,24 +33,36 @@ function battle($attacker, $defender)
 	if($attacker['count'] < 1) return "Please specify a positive number of attacking ships.";
 	if($defender['count'] < 1) return "Please specify a positive number of defending ships.";
 
-	$outcome['fuel'] = $attacker['count'] * $attacker['ship']['fuel'];
+	// Calculate fuel consumption and maximum possible loot won by the attacker.
+	$outcome['fuel'] = $attacker['count'] * $attacker['ship']['fuel'] * fuelRatio($attacker['tech']['hyper']);
 	$outcome['loot'] = $attacker['count'] * $attacker['ship']['cargo'];
+
+	// Keep track of remaining ships on both sides.
+	$attacker['remain'] = $attacker['count'];
+	$defender['remain'] = $defender['count'];
 
 	for($i = 0; $i < 3; $i++)
 	{
 		// Damage dealt to attacker by defender.
-		$attacker['damage'] = $defender['count'] * max(0, $defender['ship']['attack'] - $attacker['ship']['shield']);
-		$attacker['loss']   = min($attacker['count'], ceil($attacker['ship']['damage'] / $attacker['ship']['armor']));
+		$attacker_damage = $defender['remain'] * max(0, $defender['ship']['attack'] - $attacker['ship']['shield']);
+		$attacker_damage += $defender['remain'] * $defender['ship']['bonus'][$attacker['ship']['name']];
+		$attacker_lost   = min($attacker['remain'], floor($attacker_damage / $attacker['ship']['armor']));
 
 		// Damage dealt to defender by attacker.
-		$defender['damage'] = $attacker['count'] * max(0, $attacker['ship']['attack'] - $defender['ship']['shield']);
-		$defender['loss']   = min($defender['count'], ceil($defender['ship']['damage'] / $defender['ship']['armor']));
+		$defender_damage = $attacker['remain'] * max(0, $attacker['ship']['attack'] - $defender['ship']['shield']);
+		$defender_damage += $attacker['remain'] * $attacker['ship']['bonus'][$defender['ship']['name']];
+		$defender_lost   = min($defender['remain'], floor($defender_damage / $defender['ship']['armor']));
 
 		// Remove destroyed ships from the next round of battle.
-		$attacker['count'] -= $attacker['loss'];
-		$defender['count'] -= $defender['loss'];
+		$attacker['remain'] -= $attacker_lost;
+		$defender['remain'] -= $defender_lost;
 	}
 
+	// Sum up losses on both sides.
+	$attacker['lost'] = $attacker['count'] - $attacker['remain'];
+	$defender['lost'] = $defender['count'] - $defender['remain'];
+
+	// Calculate planetary debris created by this battle.
 	$outcome['debris'] = array(0, 0, 0); // TODO.
 
 	$outcome['attacker'] = $attacker;

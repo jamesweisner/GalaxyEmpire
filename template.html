@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<title>Galaxy Empire Battle Calculator</title>
+		<title>Galaxy Empire Battle Simulator</title>
 		<link rel="stylesheet" type="text/css" href="main.css" />
 	</head>
 	<body>
@@ -13,10 +13,10 @@
 						<div>
 							<select name="<?php echo $side; ?>[type]">
 								<?php foreach($ships as $i => $ship): ?>
-									<option value="<?php echo $i; ?>"><?php echo $ship['name']; ?></option>
+									<option value="<?php echo $i; ?>"<?php if($i == $_POST[$side]['type']) echo ' selected="selected"'; ?>><?php echo $ship['name']; ?></option>
 								<?php endforeach; ?>
 							</select>
-							<input type="text" name="<?php echo $side?>[count]" size="8" value="" />
+							<input type="text" name="<?php echo $side?>[count]" size="8" value="<?php echo (int) $_POST[$side]['count']; ?>" />
 							<input type="button" value="-" />
 						</div>
 						<div><input type="button" value="+" /></div>
@@ -24,17 +24,17 @@
 					<br />
 					<fieldset>
 						<legend>Tech Level</legend>
-						<div><input type="text" name="<?php echo $side; ?>[tech][hyper]"  size="8" value="" /> Hyperspace</div>
-						<div><input type="text" name="<?php echo $side; ?>[tech][attack]" size="8" value="" /> Weapons</div>
-						<div><input type="text" name="<?php echo $side; ?>[tech][shield]" size="8" value="" /> Shielding</div>
-						<div><input type="text" name="<?php echo $side; ?>[tech][armor]"  size="8" value="" /> Strength</div>
+						<div><input type="text" name="<?php echo $side; ?>[tech][hyper]"  size="8" value="<?php echo (int) $_POST[$side]['tech']['hyper'];  ?>" /> Hyperspace</div>
+						<div><input type="text" name="<?php echo $side; ?>[tech][attack]" size="8" value="<?php echo (int) $_POST[$side]['tech']['attack']; ?>" /> Weapons</div>
+						<div><input type="text" name="<?php echo $side; ?>[tech][shield]" size="8" value="<?php echo (int) $_POST[$side]['tech']['shield']; ?>" /> Shielding</div>
+						<div><input type="text" name="<?php echo $side; ?>[tech][armor]"  size="8" value="<?php echo (int) $_POST[$side]['tech']['armor'];  ?>" /> Strength</div>
 					</fieldset>
 					<fieldset>
 						<legend>Galactonite Bonus</legend>
 						<div>&nbsp;</div>
-						<div><input type="text" name="<?php echo $side; ?>[bonus][attack]" size="8" value="" /> Weapons</div>
-						<div><input type="text" name="<?php echo $side; ?>[bonus][shield]" size="8" value="" /> Shielding</div>
-						<div><input type="text" name="<?php echo $side; ?>[bonus][armor]"  size="8" value="" /> Strength</div>
+						<div><input type="text" name="<?php echo $side; ?>[bonus][attack]" size="8" value="<?php echo (int) $_POST[$side]['bonus']['attack']; ?>" /> Weapons</div>
+						<div><input type="text" name="<?php echo $side; ?>[bonus][shield]" size="8" value="<?php echo (int) $_POST[$side]['bonus']['shield']; ?>" /> Shielding</div>
+						<div><input type="text" name="<?php echo $side; ?>[bonus][armor]"  size="8" value="<?php echo (int) $_POST[$side]['bonus']['armor'];  ?>" /> Strength</div>
 					</fieldset>
 				</fieldset>
 			<?php endforeach; ?>
@@ -69,8 +69,8 @@
 						<fieldset>
 							<legend><?php echo ucfirst($side); ?></legend>
 							<?php echo $outcome[$side]['ship']['name']; ?>
-							<?php echo $outcome[$side]['loss']; ?>
-							<?php echo round($outcome[$side]['loss'] / $outcome[$side]['count'] * 100); ?>%
+							<?php echo $outcome[$side]['lost']; ?>
+							<?php echo round($outcome[$side]['lost'] / $outcome[$side]['count'] * 100); ?>%
 						</fieldset>
 					<?php endforeach; ?>
 				</fieldset>
