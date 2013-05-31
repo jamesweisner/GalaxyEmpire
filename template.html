@@ -1,48 +1,82 @@
-<?php
-
-a_count  = 5 -- Gendou's Cruisers
-a_armor  = 2700 + 1350
-a_shield =   50 +   30
-a_attack =  400 +  200
-a_cargo  =  800
-a_fuel   =  300
-
-d_count  = 25 -- Pirate's Heavy Fighter
-d_armor  = 1000
-d_shield = 25
-d_attack = 150
-
-fuel = a_count * a_fuel / 1000
-
-loot = a_count * a_cargo / 1000
-
-a_damage = d_count * max({0, d_attack - a_shield})
-a_loss = min({a_count, a_damage / a_armor})
-a_loss_ = a_loss / a_count * 100
-
-d_damage = a_count * max({0, a_attack - d_shield})
-d_loss = min({d_count, d_damage / d_armor})
-d_loss_ = d_loss / d_count * 100
-
-fuel:1.50-- k gas
-
-loot:4.00-- k resources
-
-a_loss:0.43-- count
-a_loss_:8.64-- %
-
-d_loss:2.88-- count
-d_loss_:11.50-- %
-
-
-?>
 <html>
 	<head>
 		<title>Galaxy Empire Battle Calculator</title>
+		<link rel="stylesheet" type="text/css" href="main.css" />
 	</head>
 	<body>
-		<form method="POST">
-			
+		<form method="post">
+			<?php foreach(array('attacker', 'defender') as $side): ?>
+				<fieldset>
+					<legend><?php echo ucfirst($side); ?></legend>
+					<fieldset>
+						<legend>Ships in Fleet</legend>
+						<div>
+							<select name="<?php echo $side; ?>[type]">
+								<?php foreach($ships as $i => $ship): ?>
+									<option value="<?php echo $i; ?>"><?php echo $ship['name']; ?></option>
+								<?php endforeach; ?>
+							</select>
+							<input type="text" name="<?php echo $side?>[count]" size="8" value="" />
+							<input type="button" value="-" />
+						</div>
+						<div><input type="button" value="+" /></div>
+					</fieldset>
+					<br />
+					<fieldset>
+						<legend>Tech Level</legend>
+						<div><input type="text" name="<?php echo $side; ?>[tech][hyper]"  size="8" value="" /> Hyperspace</div>
+						<div><input type="text" name="<?php echo $side; ?>[tech][attack]" size="8" value="" /> Weapons</div>
+						<div><input type="text" name="<?php echo $side; ?>[tech][shield]" size="8" value="" /> Shielding</div>
+						<div><input type="text" name="<?php echo $side; ?>[tech][armor]"  size="8" value="" /> Strength</div>
+					</fieldset>
+					<fieldset>
+						<legend>Galactonite Bonus</legend>
+						<div>&nbsp;</div>
+						<div><input type="text" name="<?php echo $side; ?>[bonus][attack]" size="8" value="" /> Weapons</div>
+						<div><input type="text" name="<?php echo $side; ?>[bonus][shield]" size="8" value="" /> Shielding</div>
+						<div><input type="text" name="<?php echo $side; ?>[bonus][armor]"  size="8" value="" /> Strength</div>
+					</fieldset>
+				</fieldset>
+			<?php endforeach; ?>
+			<br />
+			<input type="submit" name="do" value="Simulate Battle" />
+			<?php if(is_array($outcome)): ?>
+				<br />
+				<fieldset>
+					<legend>Loot</legend>
+					<?php echo implode(', ', array(
+						humanFormat(floor($outcome['loot'] / 3)) . ' Metal',
+						humanFormat(floor($outcome['loot'] / 3)) . ' Crystal',
+						humanFormat(floor($outcome['loot'] / 3)) . ' Gas',
+					)); ?>
+				</fieldset>
+				<fieldset>
+					<legend>Debris</legend>
+					<?php echo implode(', ', array(
+						humanFormat($outcome['debris'][0]) . ' Metal',
+						humanFormat($outcome['debris'][1]) . ' Crystal',
+						humanFormat($outcome['debris'][2]) . ' Gas',
+					)); ?>
+				</fieldset>
+				<fieldset>
+					<legend>Fuel</legend>
+					<?php echo humanFormat($outcome['fuel']); ?> Gas
+				</fieldset>
+				<br />
+				<fieldset>
+					<legend>Losses</legend>
+					<?php foreach(array('attacker', 'defender') as $side): ?>
+						<fieldset>
+							<legend><?php echo ucfirst($side); ?></legend>
+							<?php echo $outcome[$side]['ship']['name']; ?>
+							<?php echo $outcome[$side]['loss']; ?>
+							<?php echo round($outcome[$side]['loss'] / $outcome[$side]['count'] * 100); ?>%
+						</fieldset>
+					<?php endforeach; ?>
+				</fieldset>
+			<?php elseif($outcome): ?>
+				<strong><?php echo $outcome; ?></strong>
+			<?php endif; ?>
 		</form>
 	</body>
 </html>

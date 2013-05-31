@@ -1,0 +1,43 @@
+* {
+	font-size: inherit;
+	font-weight: inherit;
+	font-family: inherit;
+}
+body {
+	text-align: center;
+	margin: 0 auto;
+	font-size: 18px;
+	line-height: 30px;
+	font-family: Helvetica;
+	font-weight: bold;
+}
+select {
+	vertical-align: middle;
+	font-family: Verdana;
+	font-size: 16px;
+	padding: 5px;
+}
+input[type="text"] {
+	padding: 2.5px;
+}
+input[type="button"], input[type="submit"] {
+	height: 30px;
+	font-family: Verdana;
+	vertical-align: middle;
+}
+form {
+	display: inline-block;
+}
+fieldset {
+	text-align: left;
+	display: inline;
+	margin: 10px;
+}
+fieldset div {
+	padding: 5px;
+}
+strong {
+	color: red;
+	display: block;
+	padding: 10px;
+}
